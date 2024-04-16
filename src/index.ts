@@ -18,9 +18,9 @@ function shortenTweet(commit: string): [string, string] {
     }
   }
 
-  let start = index - 30;
+  let start = index - 50;
   if (start < 0) start = 0;
-  let end = index + 30;
+  let end = index + 50;
   if (end > commit.length) end = commit.length;
 
   let shortened = commit.slice(start, end);
