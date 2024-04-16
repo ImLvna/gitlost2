@@ -8,7 +8,3 @@ export const twitterClient = new TwitterApi({
   accessToken: process.env.ACCESS_TOKEN!,
   accessSecret: process.env.ACCESS_TOKEN_SECRET!,
 });
-
-export const tweet = async (text: string) => {
-  return await twitterClient.v2.tweet(text);
-};

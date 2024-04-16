@@ -1,5 +1,5 @@
 import { findSwearCommits } from "github";
-import { tweet } from "twitter";
+import { twitterClient } from "twitter";
 import words from "words";
 
 const maxTweetLength = 280;
@@ -44,10 +44,9 @@ async function loop() {
 
   const commit = commits[Math.floor(Math.random() * commits.length)];
 
-  const commitMessage = `${commit[0]}\n\nMatch: ${commit[1]}`;
-
-  console.log(commitMessage);
-  await tweet(commitMessage);
+  console.log(commit);
+  const tweet = await twitterClient.v2.tweet(commit[0]);
+  await twitterClient.v2.reply(tweet.data.id, `Match: ${commit[1]}`);
 }
 
 loop();
