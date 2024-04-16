@@ -2,3 +2,5 @@ version: '3'
 services:
   gitlost:
     build: .
+    env_file:
+      - .env
