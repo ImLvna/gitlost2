@@ -13,7 +13,7 @@ function shortenTweet(commit: string): [string, string] {
     const match = commit.match(swearGroup[1]);
     if (match) {
       matchedWord = match[0]!;
-      index = commit.indexOf(match[0]);
+      index = match.index!;
       break;
     }
   }
