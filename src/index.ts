@@ -55,4 +55,5 @@ async function loop() {
 
 loop();
 
-setInterval(loop, 1000 * 60 * 15);
+// Run every hour, twitter api lets you have 1500 messages per month
+setInterval(loop, 1000 * 60 * 60);
