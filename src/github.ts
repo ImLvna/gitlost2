@@ -12,16 +12,20 @@ export async function findSwearCommits() {
 
   for (const swearGroup of words) {
     for (const swear of swearGroup[0]) {
-      const res = await octokit.rest.search.commits({
-        q: swear,
-        sort: "committer-date",
-        order: "desc",
-        per_page: 5,
-      });
-      for (const commit of res.data.items) {
-        if (commit.commit.message.match(swearGroup[1])) {
-          latestSwearCommits.push(commit.commit.message);
+      try {
+        const res = await octokit.rest.search.commits({
+          q: swear,
+          sort: "committer-date",
+          order: "desc",
+          per_page: 5,
+        });
+        for (const commit of res.data.items) {
+          if (commit.commit.message.match(swearGroup[1])) {
+            latestSwearCommits.push(commit.commit.message);
+          }
         }
+      } catch (e) {
+        console.error(e);
       }
     }
   }

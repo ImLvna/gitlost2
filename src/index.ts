@@ -38,15 +38,19 @@ function filterDuplicates(commits: [string, string][]): [string, string][] {
 }
 
 async function loop() {
-  const commits = filterDuplicates(
-    (await findSwearCommits()).map(shortenTweet)
-  );
+  try {
+    const commits = filterDuplicates(
+      (await findSwearCommits()).map(shortenTweet)
+    );
 
-  const commit = commits[Math.floor(Math.random() * commits.length)];
+    const commit = commits[Math.floor(Math.random() * commits.length)];
 
-  console.log(commit);
-  const tweet = await twitterClient.v2.tweet(commit[0]);
-  await twitterClient.v2.reply(tweet.data.id, `Match: ${commit[1]}`);
+    console.log(commit);
+    const tweet = await twitterClient.v2.tweet(commit[0]);
+    await twitterClient.v2.reply(tweet.data.id, `Match: ${commit[1]}`);
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 loop();
