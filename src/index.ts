@@ -47,7 +47,7 @@ async function loop() {
 
     console.log(commit);
     const tweet = await twitterClient.v2.tweet(commit[0]);
-    await twitterClient.v2.reply(tweet.data.id, `Match: ${commit[1]}`);
+    await twitterClient.v2.reply(`Match: ${commit[1]}`, tweet.data.id);
   } catch (e) {
     console.error(e);
   }
